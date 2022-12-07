@@ -8,9 +8,8 @@ export const options = {
       host: "localhost",
       user: 'root',
       password: '',
-      database: 'Local instance MysSQL80',
+      database: '',
     },
-    pool: { min: 0, max: 10 },
   },
   sqlite: {
     client: "sqlite3",
