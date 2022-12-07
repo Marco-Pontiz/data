@@ -7,7 +7,7 @@ export const options = {
     connection: {
       host: "localhost",
       user: 'root',
-      password: 'Azulyrojo300597',
+      password: '',
       database: 'Local instance MysSQL80',
     },
     pool: { min: 0, max: 10 },
