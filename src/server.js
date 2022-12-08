@@ -30,7 +30,9 @@ app.use(
     methods: "GET, POST, PUT, DELETE, OPTIONS",
   })
 );
+
 app.use("/api", apiRouter);
+
 const server = app.listen(PORT, () =>
   console.log(
     `Server Online! ${PORT}. 
