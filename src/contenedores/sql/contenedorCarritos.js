@@ -2,6 +2,7 @@ import ContenedorBase from "./contenedorBase.js";
 import knex from "knex";
 import { options } from "../../config/configDB.js";
 const db = knex(options.mysql);
+
 class ContenedorCarritos extends ContenedorBase {
   constructor() {
     super("carritos");
@@ -24,6 +25,8 @@ class ContenedorCarritos extends ContenedorBase {
         .where("carrito_id", idCarrito)
         .andWhere("producto_id", idProducto)
         .del();
+        return borrarProducto;
+        
     } catch (error) {
       return error.message;
     }

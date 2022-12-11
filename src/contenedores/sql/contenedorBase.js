@@ -10,14 +10,16 @@ class ContenedorBase {
     try {
       const items = await db(this.table).select("*");
       return items;
-    } catch (error) {
+    } 
+    
+    catch (error) {
       return error.message;
     }
   }
-  async getOne(id) {
+  async getById(id) {
     try {
-      const item = await db(this.table).select("*").where("id", id);
-      return item;
+      const getById = await db(this.table).select("*").where("id", id);
+      return getById;
     } catch (error) {
       return error.message;
     }
@@ -33,8 +35,7 @@ class ContenedorBase {
   }
   async update(id, body) {
     try {
-      const { nombre, descripcion, codigo, foto, precio, stock } = body;
-      const timestamp = new Date();
+      const { nombre, codigo, precio} = body;
       await db(this.table).where("id", id).update({
         nombre,
         codigo,
@@ -49,11 +50,10 @@ class ContenedorBase {
   }
   async deleteById(id) {
     try {
-      const productoBorrado = await db(this.table).where("id", id).del();
       if (productoBorrado > 0) {
-        return true;
+        await db(this.table).where("id", id).del();
       } else {
-        return false;
+        console.log(`Producto ${id} no existe.`);
       }
     } catch (error) {
       res.status(500).json({ message: error.message });

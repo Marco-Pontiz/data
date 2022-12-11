@@ -2,7 +2,7 @@
   "name": "desafio8-db-sql-knex",
   "version": "1.0.0",
   "description": "📝 [Documentación en Postman](https://documenter.getpostman.com/view/13362314/UzBqnjhu)",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "dependencies": {
     "dotenv": "^16.0.3",

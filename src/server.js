@@ -9,7 +9,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-const PORT = 3000 || process.env.PORT;
+const PORT = 8080 || process.env.PORT;
 
 const httpServer = http.createServer(app);
 
@@ -35,13 +35,14 @@ app.use("/api", apiRouter);
 
 const server = app.listen(PORT, () =>
   console.log(
-    `Server Online! ${PORT}. 
+    `Server Online! http:/localhost:${PORT}. 
         at ${new Date().toLocaleString()}`
   )
 );
 server.on("error", (err) => console.log(err));
+
 function onInit() {
-  console.log("SQL");
+  console.log("PRIMERA BASE DE DATOS CON MYSQL");
 }
 
 onInit();
