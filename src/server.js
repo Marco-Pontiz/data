@@ -1,6 +1,7 @@
 import express from "express";
 import http from "http";
 import morgan from "morgan";
+import mongoose from 'mongoose'
 import apiRouter from "./routes/indexRoutes.js";
 import cors from "cors";
 import { Server as ioServer} from "socket.io";

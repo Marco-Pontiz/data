@@ -5,10 +5,10 @@ export const options = {
   mysql: {
     client: "mysql2",
     connection: {
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "productos",
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'productos',
     },
   },
   sqlite: {
