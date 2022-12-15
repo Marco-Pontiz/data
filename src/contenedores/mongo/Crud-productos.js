@@ -54,6 +54,7 @@ for (const producto of productos) {
 
 const results = await Promise.all(inserciones)
 const rejected = results.filter(results => results.status === "rejected")
+
 if(rejected.length > 0){
     console.log('Error al insertar productos')
     console.log(rejected)
@@ -84,4 +85,5 @@ console.log(r_producto)
 console.log('Delete...')
 let d_producto = await productoModel.deleteOne({nombre: 'Nintendo Switch'})
 console.log(d_producto)
+
 await mongoose.disconnect();
