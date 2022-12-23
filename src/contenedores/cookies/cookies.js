@@ -14,9 +14,8 @@ app.use(session({
 */
 
 /*Clase 23*/
-const express = require('express')
-
-const cookieParser = require('cookie-parser')
+import express, {json} from 'express';
+import cookieParser from 'cookie-parser';
 
 const app = express()
 app.use(cookieParser('Coderhouse'))
@@ -51,7 +50,7 @@ app.delete(`/cookies/:nombre`, (req, res) => {
     }
 })
 
-const PORT = 8000
+const PORT = 3000
 const server = app.listen(PORT, () => {
     console.log(`Server Listen http://localhost:${PORT}`)
 })
