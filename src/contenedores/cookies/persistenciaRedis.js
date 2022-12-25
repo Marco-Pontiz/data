@@ -1,14 +1,24 @@
 const express = require ('express');
 const cookieParser = require ('cookie-parser');
 const session = require ('express-session');
-const sessionFileStore = require ('session-file-store');
 
-const fileStore = require('session-file-store')(session);
+/*Redis*/ 
+const redis = require('redis');
+const connectRedis = require('connect-redis');
+const client = redis.createClient();
+client.connect().catch(console.error)
+const redisStore = connectRedis(session);
+/*------*/
 
 const app = express();
 app.use(cookieParser());
 app.use(session({
-    store: new fileStore({path: `./sesiones`, ttl:300, restries: 0}),
+    store: new redisStore({
+        host:'localhost',
+        port: 6379,
+        client: client,
+        ttl: 300
+    }),
     secret: `Coderhouse`,
     resave: false,
     saveUninitialized: false, 
@@ -77,41 +87,3 @@ const server = app.listen(PORT, () => {
 });
 
 console.log(`error`, error => console.log(`Error del servidor ${error}`));
-
-/*import express from 'express';
-import session from 'express-session';
-
-const app = express();
-app.use(session({
-    secret: 'Coderhouse',
-    resave: false,
-    saveUninitialized: false,
-}));
-
-const getNombreSession = req => req.query.nombre ? req.session.nombre = req.query.nombre : 'Invitado';
-
-app.get('/', (req,res) => {
-    if(req.session.contador){
-        req.session.contador++;
-        res.send(`Hola ${getNombreSession(req)}! visitaste la pagina ${req.session.contador} veces`);
-    }else{
-        req.session.contador = 1;
-        res.send(`Hola ${getNombreSession(req)}! Le damos la bienvenida`);
-    }
-});
-
-app.get('/olvidar', (req, res) => {
-    req.session.destroy(err => {
-        if(err){
-            res.json({error: 'olvidar', body: err})
-        }else{
-            res.send(`See you soon!`)
-        }
-    })
-});
-
-const PORT = 8000
-const server = app.listen(PORT, () => {
-    console.log(`Server Listen http://localhost:${PORT}`)
-})
-server.on(`error`, error => console.log(`Error server ${error}`));*/
